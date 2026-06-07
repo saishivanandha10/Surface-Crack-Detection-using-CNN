@@ -1,1 +1,0 @@
-# Surface-Crack-Detection-using-CNN
