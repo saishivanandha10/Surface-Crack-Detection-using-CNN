@@ -15,7 +15,7 @@ Built with TensorFlow / Keras · Custom CNN · MobileNetV2 · ResNet50
 
 ## Overview
 
-This project trains and evaluates three deep learning models to detect surface cracks in concrete imagery — a critical task in structural health monitoring. The notebook covers the full ML pipeline: exploratory data analysis, preprocessing, augmentation, model training, Grad-CAM interpretability, error analysis, and deployment risk assessment.
+This project trains and evaluates three deep learning models to detect surface cracks in concrete imagery - a critical task in structural health monitoring. The notebook covers the full ML pipeline: exploratory data analysis, preprocessing, augmentation, model training, Grad-CAM interpretability, error analysis, and deployment risk assessment.
 
 | Model | Accuracy | F1-Score | AUC-ROC | Parameters | Train Time |
 |-------|----------|----------|---------|------------|------------|
@@ -23,7 +23,7 @@ This project trains and evaluates three deep learning models to detect surface c
 | MobileNetV2 | 31.97% | 0.4449 | 0.2349 | 2.60 M | 8.1 min |
 | ResNet50 | 44.47% | 0.5376 | 0.3922 | 24.13 M | 6.5 min |
 
-> **Key finding:** The lightweight custom CNN (0.67 M parameters) outperforms both transfer learning models by a large margin, achieving near-perfect 99.75% accuracy — demonstrating that a purpose-built architecture beats ImageNet-pretrained models on this specialized texture-based task.
+> **Key finding:** The lightweight custom CNN (0.67 M parameters) outperforms both transfer learning models by a large margin, achieving near-perfect 99.75% accuracy - demonstrating that a purpose-built architecture beats ImageNet-pretrained models on this specialized texture-based task.
 
 ---
 
@@ -32,7 +32,7 @@ This project trains and evaluates three deep learning models to detect surface c
 | ID | Question |
 |----|----------|
 | **RQ1** | How accurately can CNN-based models detect surface cracks on publicly available datasets? |
-| **RQ2** | Which model family — custom CNN or transfer learning — gives the best performance-efficiency trade-off? |
+| **RQ2** | Which model family - custom CNN or transfer learning - gives the best performance-efficiency trade-off? |
 | **RQ3** | How do preprocessing, augmentation, and class-balance handling influence model robustness? |
 | **RQ4** | Do Grad-CAM explanations show models attending to meaningful crack-related regions? |
 | **RQ5** | What are the main failure patterns, deployment limitations, and practical risks? |
@@ -57,13 +57,13 @@ Surface-Crack-Detection-using-CNN/
 
 ## Dataset
 
-**[Surface Crack Detection — arunrk7 on Kaggle](https://www.kaggle.com/datasets/arunrk7/surface-crack-detection)**
+**[Surface Crack Detection - arunrk7 on Kaggle](https://www.kaggle.com/datasets/arunrk7/surface-crack-detection)**
 
 | Property | Value |
 |----------|-------|
 | Total images | 40,000 |
 | Classes | `Positive` (cracked) · `Negative` (intact) |
-| Class balance | Perfectly balanced — 20,000 per class |
+| Class balance | Perfectly balanced - 20,000 per class |
 | Image size | 227 × 227 px, JPEG |
 | Split used | 70% train / 15% val / 15% test (stratified) |
 
@@ -78,34 +78,34 @@ A 4-block convolutional network built from scratch:
 - Trained with early stopping, ReduceLROnPlateau, and best-checkpoint saving
 
 ### 2. MobileNetV2 (Transfer Learning)
-- **Stage 1:** Feature extraction only — base frozen, 10 epochs
-- **Stage 2:** Fine-tune top 30 layers — up to 20 additional epochs
+- **Stage 1:** Feature extraction only - base frozen, 10 epochs
+- **Stage 2:** Fine-tune top 30 layers - up to 20 additional epochs
 - Custom head: `GlobalAveragePooling2D → Dense(128, ReLU) → Dropout(0.3) → Sigmoid`
 
 ### 3. ResNet50 (Transfer Learning)
-- **Stage 1:** Feature extraction only — base frozen, 10 epochs
-- **Stage 2:** Fine-tune top 20 layers — up to 20 additional epochs
+- **Stage 1:** Feature extraction only - base frozen, 10 epochs
+- **Stage 2:** Fine-tune top 20 layers - up to 20 additional epochs
 - Custom head: `GlobalAveragePooling2D → Dense(256, ReLU) → Dropout(0.4) → Sigmoid`
 
 ---
 
 ## Key Results
 
-### RQ1 & RQ2 — Accuracy vs. Efficiency
-The custom CNN achieves 99.75% accuracy at just 0.67 M parameters — the lowest count of the three models. Transfer learning models underperformed significantly, likely due to domain mismatch between ImageNet pretraining and low-texture crack surface imagery.
+### RQ1 & RQ2 - Accuracy vs. Efficiency
+The custom CNN achieves 99.75% accuracy at just 0.67 M parameters - the lowest count of the three models. Transfer learning models underperformed significantly, likely due to domain mismatch between ImageNet pretraining and low-texture crack surface imagery.
 
-### RQ3 — Preprocessing & Augmentation
+### RQ3 - Preprocessing & Augmentation
 - Pixel normalization to `[0, 1]` (CNN) and model-specific ranges (MobileNetV2 / ResNet50) stabilized training
 - Augmentation applied: random horizontal/vertical flips + brightness/contrast variation
-- No class weighting required — the dataset is perfectly balanced
+- No class weighting required - the dataset is perfectly balanced
 - Stratified splits preserved class ratios across all three sets
 
-### RQ4 — Grad-CAM Interpretability
+### RQ4 - Grad-CAM Interpretability
 - Custom CNN heat maps correctly focus on crack texture regions
 - MobileNetV2 shows finer-grained localization consistent with depthwise separable convolution
 - Both models attend to crack-relevant features rather than background artefacts
 
-### RQ5 — Failure Analysis & Deployment Risks
+### RQ5 - Failure Analysis & Deployment Risks
 
 | Metric | Value |
 |--------|-------|
@@ -169,7 +169,7 @@ outputs/
 3. **Enable GPU:** Session options → Accelerator → **GPU P100** or **T4 x2** → restart the session.
 4. Click **Run All**.
 
-The notebook auto-detects the Kaggle dataset path — no code changes needed.
+The notebook auto-detects the Kaggle dataset path - no code changes needed.
 
 | Model | Approx. GPU Training Time |
 |-------|--------------------------|
