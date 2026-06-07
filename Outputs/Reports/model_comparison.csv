@@ -1,0 +1,4 @@
+Model,Accuracy,Precision,Recall,F1-Score,AUC-ROC,Parameters,Train Time
+Custom CNN,0.9975,0.9987,0.9963,0.9975,0.9999,0.67 M,32.8 min
+MobileNetV2,0.3197,0.3757,0.5453,0.4449,0.2349,2.60 M,8.1 min
+ResNet50,0.4447,0.4605,0.6457,0.5376,0.3922,24.13 M,6.5 min
